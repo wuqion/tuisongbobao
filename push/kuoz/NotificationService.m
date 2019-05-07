@@ -23,7 +23,18 @@
     self.bestAttemptContent = [request.content mutableCopy];
     
     // Modify the notification content here...
-    self.bestAttemptContent.title = [NSString stringWithFormat:@"%@ [modified]", self.bestAttemptContent.title];
+    //b改变文字
+//    self.bestAttemptContent.title = [NSString stringWithFormat:@"%@ [modified]", self.bestAttemptContent.title];
+    [self yuyinbobao];
+    //说ios12.1中不能用上面的方法了,暂时不测试了
+    //声音文件必须包含在应用程序包或应用程序数据容器的Library/Sounds文件夹中
+//    self.bestAttemptContent.sound = [UNNotificationSound soundNamed:@"shoukuanAuido.wav"];
+
+    
+    
+}
+- (void)yuyinbobao
+{
     //嗓音
     AVSpeechSynthesisVoice * voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"zh-CN"];
     
@@ -37,7 +48,6 @@
     _synthesizer.delegate = self;
     //朗读
     [_synthesizer speakUtterance:utterance];
-    
 }
 - (void)speechSynthesizer:(AVSpeechSynthesizer *)synthesizer didFinishSpeechUtterance:(AVSpeechUtterance *)utterance
 {
